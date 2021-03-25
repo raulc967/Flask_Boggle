@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+    {% block content %}
+        <h2>The number of correct guesses is {{ correct }}</h2>
+        <h3>The current high score is {{ high_score }}</h3>
+        <table>
+            {% for cube in board %}
+                <tr>
+                    {% for c in cube %}
+                        <th>{{ c }}</th>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        <form action='/check' method='POST'>
+            <label for="guess">Enter a guess:</label>
+            <input type="text" name="guess"><br>
+            <button id="submit">Guess</button>
+        </form>
+        <button id='restart'>Restart</button>
+        <script src="{{ url_for('static', filename='restart.js') }}"></script>
+    {% endblock %}
